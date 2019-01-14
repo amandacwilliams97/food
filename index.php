@@ -45,5 +45,31 @@ $f3->route('GET /breakfast/pancakes', function() {
    echo $view->render('views/pancakes.html');
 });
 
+#-----------------------------------------------------------
+#Define a Dinner route
+$f3->route('GET /dinner', function() {
+   $view = new View();
+   echo $view->render('views/dinner.html');
+});
+
+#Define a dinner/meatloaf route
+$f3->route('GET /dinner/meatloaf', function() {
+   $view = new View();
+   echo $view->render('views/meatloaf.html');
+});
+
+#Define a dinner/steak_potatoes route
+$f3->route('GET /dinner/steak_potatoes', function() {
+   $view = new View();
+   echo $view->render('views/steak_potatoes.html');
+});
+
+#Define a dinner/tuna_caserole route
+$f3->route('GET /dinner/tuna_caserole', function() {
+   $view = new View();
+   echo $view->render('views/tuna_caserole.html');
+});
+
+#--------------------------------------------------------------
 #run fat free
 $f3->run();
