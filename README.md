@@ -1,2 +1,2 @@
 # food
-probably deals with good.
+probably deals with food.

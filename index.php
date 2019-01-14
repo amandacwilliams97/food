@@ -20,11 +20,11 @@ $f3->set('DEBUG', 3);
 
 #define a default route
 $f3->route('GET /', function() {
-    echo '<h1>My Fav Foods</h1>';
-    /*
-    $view = new View;
-    echo $view->render('views/home-page.html');
-    */
+    //echo '<h1>My Fav Foods</h1>';
+
+    $view = new View();
+    echo $view->render('views/home.html');
+
 });
 
 #run fat free
