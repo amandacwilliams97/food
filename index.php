@@ -40,7 +40,7 @@ $f3->route('GET /lunch', function() {
 });
 
 #Define a breakfast/pancakes route
-$f3->route('GET /lunch', function() {
+$f3->route('GET /breakfast/pancakes', function() {
    $view = new View();
    echo $view->render('views/pancakes.html');
 });
