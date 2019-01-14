@@ -27,5 +27,17 @@ $f3->route('GET /', function() {
 
 });
 
+#Define a breakfast route
+$f3->route('GET /breakfast', function() {
+   $view = new View();
+   echo $view->render('views/breakfast.html');
+});
+
+#Define a lunch route
+$f3->route('GET /lunch', function() {
+   $view = new View();
+   echo $view->render('views/lunch.html');
+});
+
 #run fat free
 $f3->run();
