@@ -91,14 +91,26 @@ $f3->route('GET /@meal/@food', function($f3, $params) {
     print_r($params);
 
     $validmeals =['breakfast', 'lunch', 'dinner'];
+    $meal = $params['meal'];
 
     #check validity
-    if(!in_array($params['meal'], $validmeals)) {
-        echo "<h3>Sorry, we don't serve {$params['meal']}</h3>";
+    if(!in_array($meal, $validmeals)) {
+        echo "<h3>Sorry, we don't serve $meal</h3>";
     }
     else {
-        echo"<h3>I like ".$params['food']." for "
-            .$params['meal']."</h3>";
+        switch($meal) {
+            case 'breakfast':
+                $time = " in the morning"; break;
+
+            case 'lunch':
+                $time = " at noon"; break;
+
+            case 'dinner':
+                $time = " in the evening"; //break;
+                                    #unnecessary as its the last case
+
+        }
+        echo"<h3>I like ".$params['food']." $time</h3>";
     }
 });
 
@@ -131,6 +143,26 @@ $f3->route('POST /order-process', function($f3) { //$f3, $params
 
         #display a 404 error
         //$f3->reroute(404);
+    }
+});
+
+#--------------------------------------------------------------
+#Define a route /dessert/@param
+$f3->route('GET /dessert/@dessert', function($f3, $params) {
+    $dessert = $params['dessert'];
+
+    switch ($dessert) {
+        case 'pie':
+            $view = new View();
+            echo $view->render('views/pie.html'); break;
+        case 'cake':
+            echo "<h3>I like cake.</h3>"; break;
+        case 'cookies':
+            echo "<h3>I like cookies.</h3>"; break;
+        case 'brownies':
+            echo "<h3>I like brownies.</h3>"; break;
+        default :
+            $f3->error(404);
     }
 });
 
