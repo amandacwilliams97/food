@@ -18,13 +18,36 @@ $f3 = Base::instance();
 #Turn on Fat-Free error reporting
 $f3->set('DEBUG', 3);
 
+
 #define a default route
+/*
 $f3->route('GET /', function() {
     //echo '<h1>My Fav Foods</h1>';
 
     $view = new View();
     echo $view->render('views/home.html');
 
+});
+*/
+
+#learn templating
+$f3->route('GET /', function($f3) {
+//save variables
+    $f3->set('username', 'jshmo');
+    $f3->set('password', sha1('Password01'));
+    $f3->set('title', 'Working with Templates');
+    $f3->set('temp', 67);
+    $f3->set('color', 'purple');
+    $f3->set('radius', 10);
+    $f3->set('fruits', array('apple', 'orange', 'banana'));
+    $f3->set('bookmarks', array('YouTube'=>'https://www.youtube.com/', 'GitHub'=>'https://github.com/', 'Office Home'=>'https://www.office.com/?auth=2&home=1'));
+
+//load a template
+    $template = new Template();
+    echo $template->render('views/info.html');
+
+//alternate syntax
+    //echo Template::instance()->render('views/info.html');
 });
 
 #-----------------------------------------------------------
@@ -108,7 +131,6 @@ $f3->route('GET /@meal/@food', function($f3, $params) {
             case 'dinner':
                 $time = " in the evening"; //break;
                                     #unnecessary as its the last case
-
         }
         echo"<h3>I like ".$params['food']." $time</h3>";
     }
@@ -134,7 +156,7 @@ $f3->route('POST /order-process', function($f3) { //$f3, $params
         $f3->reroute("breakfast/pancakes");
     }
     else if($food == 'sushi') {
-        #reroute toparameter page
+        #reroute to parameter page
         $f3->reroute("sushi");
     }
     else {

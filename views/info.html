@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ @title }}</title>
+</head>
+<body>
+<h1>{{ @title }}</h1>
+<p>User logged in as {{ strtoupper(@username) }} using {{ @password }}</p>
+<!--You can use php functions and methods in templates-->
+
+<h3>Temperature</h3>
+<p>Fahrenheit: {{ @temp }} degrees</p>
+<p>Celsius: {{ round((@temp-32) * (5.0/9.0), 2) }} degrees</p>
+
+<h3>Circle</h3>
+<p>Circumference: {{ (2*pi()*@radius) }}</p>
+
+<h3>Fruits</h3>
+<!--
+<repeat group="{{ @fruits }}" value="{{ @fruit }}">
+    <p>{{ trim(@fruit) }}</p>
+</repeat>
+-->
+<ol>
+    <repeat group="{{ @fruits }}" value="{{ @fruit }}">
+        <li>{{ trim(@fruit) }}</li>
+    </repeat>
+</ol>
+
+<h3>Links</h3>
+<ul>
+    <repeat group="{{ @bookmarks }}" value="{{ @title => @url }}">
+        <li><a href="{{@url}}">{{ trim(@title) }}</a></li>
+    </repeat>
+</ul>
+
+</body>
+</html>
